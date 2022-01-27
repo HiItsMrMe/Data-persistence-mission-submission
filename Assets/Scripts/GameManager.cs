@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public string playerName;
+    public int highscorePoints;
+    public string highscorePlayer;
 
     private void Awake()
     {

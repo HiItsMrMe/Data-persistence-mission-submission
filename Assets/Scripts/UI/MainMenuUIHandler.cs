@@ -11,6 +11,31 @@ public class MainMenuUIHandler : MonoBehaviour
 {
     [SerializeField]
     private InputField nameInput;
+    [SerializeField]
+    private Text highscoreText;
+    [SerializeField]
+    private GameObject resetMenu;
+
+    public void Awake()
+    {
+        if (GameManager.Instance != null)
+        {
+            nameInput.text = GameManager.Instance.playerName;
+            DisplayHighscore();
+        }
+    }
+
+    private void DisplayHighscore()
+    {
+        if (GameManager.Instance.highscorePoints != 0)
+        {
+            highscoreText.text = GameManager.Instance.highscorePlayer + " with " + GameManager.Instance.highscorePoints + " points";
+        }
+        else
+        {
+            highscoreText.text = "none";
+        }
+    }
 
     public void StartGame()
     {
@@ -29,6 +54,22 @@ public class MainMenuUIHandler : MonoBehaviour
     public void NameChanged()
     {
         GameManager.Instance.playerName = nameInput.text;
-        Debug.Log(GameManager.Instance.playerName);
     }
+
+    public void OpenResetMenu()
+    {
+        resetMenu.SetActive(true);
+    }
+    public void ResetHighscore()
+    {
+        GameManager.Instance.highscorePoints = 0;
+        DisplayHighscore();
+        CloseResetMenu();
+    }
+
+    public void CloseResetMenu()
+    {
+        resetMenu.SetActive(false);
+    }
+
 }
