@@ -63,6 +63,8 @@ public class MainMenuUIHandler : MonoBehaviour
     public void ResetHighscore()
     {
         GameManager.Instance.highscorePoints = 0;
+        GameManager.Instance.SaveHighscore();
+
         DisplayHighscore();
         CloseResetMenu();
     }
