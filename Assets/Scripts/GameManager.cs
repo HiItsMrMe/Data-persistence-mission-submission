@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
         else
         {
             LoadHighscore();
-            Debug.Log("loading highscore...");
         }
 
         Instance = this;
@@ -38,8 +37,6 @@ public class GameManager : MonoBehaviour
     private void LoadHighscore()
     {
         string json = File.ReadAllText(Application.persistentDataPath + "/highscore.json");
-
-        Debug.Log(json);
 
         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
@@ -54,7 +51,6 @@ public class GameManager : MonoBehaviour
         data.highscorePlayer = highscorePlayer;
 
         string json = JsonUtility.ToJson(data);
-        Debug.Log(json);
         File.WriteAllText(Application.persistentDataPath + "/highscore.json", json);
     }
 
